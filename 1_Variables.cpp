@@ -26,7 +26,7 @@ int main()
     cin >> inputVal;
     cout << "Entered Value is : " << inputVal << endl;
 
-    // Operator
+    // Operators
     // (i). Arithmetic Operators i.e.,
     // Unary: Works on single operand.
     int val = 1;
