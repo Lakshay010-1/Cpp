@@ -13,6 +13,13 @@ int main()
     double douVal = 5234905; //  8 bytes
     string str="abc";        //  24 bytes
 
+    // Data Modifiers
+    long int lInt=1234;
+    short int sInt=14;
+    unsigned int unsignInt=12;
+    signed signInt=-12;
+    long long int llInt=123412421;
+
     // Type Conversion
     /*bool -> char -> short int -> int ->  unsigned int -> long -> unsigned -> long long -> float -> double -> long double*/
     double newDouVal = floatVal;
