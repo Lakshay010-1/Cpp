@@ -67,8 +67,10 @@ int main()
 
     // Math
     // (i). Built-in functions e.g.,max(), min(), etc.
-    int maxVal=max(5,9);
-    int minVal=min(5,9);
+    int a=5,b=9;
+    int maxVal=max(a,b);
+    int minVal=min(a,b);
+    swap(a,b);
     // (ii). Library functions
     int sqrtVal=sqrt(9);
     int roundVal=round(3.6);
