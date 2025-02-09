@@ -48,6 +48,11 @@ int fibonacci(int n=5){
     return fibonacci(n-1)+fibonacci(n-2);
 }
 
+//Inline Function
+inline int getMax(int& a,int& b){
+    return (a>b)?a:b;
+}
+
 int main(){
     greet();
     time_t timestamp=time(&timestamp);
@@ -61,6 +66,8 @@ int main(){
     swapR(a,b);
     cout<<a<<" "<<b<<endl;
     cout<<"fibo"<<fibonacci(6)<<endl;
+    int n1=4,n2=9;
+    cout<<getMax(n1,n2)<<endl;
     return 0;
 }
 
