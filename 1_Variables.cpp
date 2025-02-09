@@ -1,10 +1,29 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#define PI 3.14159                                              //1. Object-Like Macros
+#define PRINT(x) cout<<"Value is : "<<x                         //2. Function-Like Macros
+//3. Multiline Macros - we need to append the ( \ ) backslash after every line
+#define PRINT_SQUARE(x)                \
+        for(int i=0;i<x;i++){          \
+            for(int j=0;j<x;j++){      \
+                std::cout<<"*";        \
+            }                          \
+            std::cout<<std::endl;      \
+        }                              
+#define TWOPI (PI*2)                                            //4. Chain Macros
 using namespace std;
 
 int main()
 {
+    //5.  Predefined Macros
+    cout<<"Line number is : "<<__LINE__<<endl;
+    cout<<"File name of this program is : "<<__FILE__<<endl;
+    cout<<"Program Compilation Date : "<<__DATE__<<endl;
+    cout<<"Time of compilation is : "<<__TIME__<<endl;
+    cout<<"Compiler Standard Number : "<<__STDC__<<endl;
+    cout<<"STDC_HOSTDED Number : "<<__STDC_HOSTED__<<endl;
+
     // Data Types
     int intVal = 9;          //  4 bytes
     char charVal = 'a';      //  1 byte
