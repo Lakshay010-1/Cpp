@@ -5,6 +5,25 @@ using namespace std;
 // &-get the memory address of a variable
 // *-stores the memory address as its value
 
+class Person{
+    public:
+    void setName(string n){
+        name=n;
+    }
+    string getName(){
+        return name;
+    }
+    void setLevel(int l){
+        level=l;
+    }
+    int getLevel(){
+        return level;
+    }
+    private:
+    string name;
+    int level;
+};
+
 int main(){
     int var=2;
 
@@ -14,6 +33,15 @@ int main(){
     cout<<ptrVal<<endl;
     int* nullPtr=NULL;                                              //Null Pointer
     cout<<nullPtr<<endl;
+
+    //Arrow operator -  "->" is used to access the members of an object or struct when working with pointer to an object
+    Person* p1=new Person();
+    //Approach-1). Using Dot operator
+    (*p1).setName("ABC");
+    cout<<"Person Name is : "<<(*p1).getName()<<endl;
+    //Approach-1). Using Arrow operator
+    p1->setLevel(9);
+    cout<<"Person Name is : "<<p1->getLevel()<<endl;
 
     // Array Pointer
     int arr[]={1,2,3,4,5,6};
