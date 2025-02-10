@@ -39,7 +39,7 @@ int main(){
     //Approach-1). Using Dot operator
     (*p1).setName("ABC");
     cout<<"Person Name is : "<<(*p1).getName()<<endl;
-    //Approach-1). Using Arrow operator
+    //Approach-2). Using Arrow operator
     p1->setLevel(9);
     cout<<"Person Name is : "<<p1->getLevel()<<endl;
 
