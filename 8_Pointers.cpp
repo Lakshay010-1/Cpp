@@ -35,6 +35,7 @@ int main(){
     cout<<nullPtr<<endl;
 
     //Arrow operator -  "->" is used to access the members of an object or struct when working with pointer to an object
+    //Dot operator - "."-dot operator is used to access class, structure, or union members
     Person* p1=new Person();
     //Approach-1). Using Dot operator
     (*p1).setName("ABC");
