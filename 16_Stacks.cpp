@@ -3,6 +3,8 @@
 #include<climits>
 using namespace std;
 
+// Stack is a linear data structure that follows LIFO (Last In First Out) Principle.
+
 class Stack{
     private:
     int *arr, top, size;
@@ -47,7 +49,6 @@ class Stack{
         }
         cout<<"\nPeek : "<<peek()<<endl;
     }
-
 };
 
 int main(){
