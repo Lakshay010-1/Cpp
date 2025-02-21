@@ -100,23 +100,35 @@ class BinarySearchTree{
         }
 
         if(root->data==value){
+
             if(root->left==NULL && root->right==NULL){              // No Child
                 delete root;
                 return NULL;
+
             }else if(root->left!=NULL && root->right==NULL){        // 1 Child - Left Child
                 Node* leftChild=root->left;
                 delete root;
                 return leftChild;
+
             }else if(root->right!=NULL && root->left==NULL){        // 1 Child - Right Child
                 Node* rightChild=root->right;
                 delete root;
                 return rightChild;
+
             }else{                                                  // 2 Child
-                //Approach-1. Find the min value node from the right subtree and replace the value of the root with the min value and 
-                //            delete the min value node from the right subtree
+
+                // Approach-1. Find the min value node from the right subtree and replace the value of the root with the min value and 
+                //             delete the min value node from the right subtree
                 int minRightVal=minVal(root->right)->data;
                 root->data=minRightVal;
                 root->right=deleteNode(root->right,minRightVal);
+
+                // Approach-2. Find the max value node from the left subtree and replace the value of the root with the max value and 
+                //             delete the max value node from the left subtree
+                // int maxLeftVal=maxVal(root->left)->data;
+                // root->data=maxLeftVal;
+                // root->left=deleteNode(root->left,maxLeftVal);
+
                 return root;
             }
         }else if(root->data>value){
@@ -146,7 +158,7 @@ class BinarySearchTree{
 int main(){
     BinarySearchTree *bst=new BinarySearchTree();
     BinarySearchTree::Node *root=bst->getRoot();
-    vector<int> elements={3,2,4,1,5,9};
+    vector<int> elements={3,2,7,4,1,5,8,6,9};
     root=bst->insertIntoBST(root,elements);
     bst->inOrderTraversal(root);
     int target=8;
