@@ -3,8 +3,16 @@
 #include<queue>
 using namespace std;
 
+// BST is a hierarchical structure that follows all properties of binary tree and for every nodes,
+// its left subtree contains values less than the node and
+// the right subtree contains values greater than the node.
+
 class BinarySearchTree{
     public:
+    ~BinarySearchTree(){
+        delete mainRoot;
+        cout<<endl<<"Tree Deleted"<<endl;
+    }
     class Node{
         public:
         int data;
@@ -18,18 +26,20 @@ class BinarySearchTree{
         ~Node(){
             delete left;
             delete right;
-            cout<<"Node Deleted..."<<endl;
         }
     };
     Node* getRoot(){
         return mainRoot;
     }
+    //Time Complexity=0(n.logn), Space Complexity=0(n.logn)     -> for balanced BST
+    //Time Complexity=0(n^2), Space Complexity=0(n^2)           -> for skewed BST
     Node* insertIntoBST(Node* root,vector<int> elements){
         for(int i=0;i<elements.size();i++){
             root=insertIntoBSTUtil(root,elements[i]);
         }
         return root;
     }
+    //Time Complexity=0(n), Space Complexity=0(n)
     void inOrderTraversal(Node *root){
         if(root==NULL){
             return;
@@ -38,6 +48,7 @@ class BinarySearchTree{
         cout<<root->data<<" ";
         inOrderTraversal(root->right);
     }
+    //Time Complexity=0(n), Space Complexity=0(n)
     void levelOrderTraversal(Node *root){
         queue<Node*> q;
         q.push(root);
@@ -61,6 +72,7 @@ class BinarySearchTree{
         }
         cout<<endl;
     }
+    //Time Complexity=0(logn), Space Complexity=0(logn)
     bool searchInBST(Node* root,int target){
         if(root==nullptr){
             return false;
@@ -74,6 +86,7 @@ class BinarySearchTree{
             return searchInBST(root->right,target);
         }
     }
+    //Time Complexity=0(logn), Space Complexity=0(1)
     Node* minVal(Node* root){
         if(root==NULL){
             return new Node(-1);
@@ -84,6 +97,7 @@ class BinarySearchTree{
         }
         return temp;
     }
+    //Time Complexity=0(logn), Space Complexity=0(1)
     Node* maxVal(Node* root){
         if(root==NULL){
             return new Node(-1);
@@ -94,6 +108,7 @@ class BinarySearchTree{
         }
         return temp;
     }
+    //Time Complexity=0(logn), Space Complexity=0(logn)
     Node* deleteNode(Node* root,int value){
         if(root==nullptr){
             return root;
@@ -139,8 +154,19 @@ class BinarySearchTree{
             return root;
         }
     }
+    //Time Complexity=0(n), Space Complexity=0(n)
+    void freeMemory(Node* root){
+        if(root==NULL){
+            return;
+        }
+        freeMemory(root->left);
+        freeMemory(root->right);
+        delete root;
+    }
     private:
     Node* mainRoot;
+    //Time Complexity=0(logn), Space Complexity=0(logn)     -> for balanced BST
+    //Time Complexity=0(n), Space Complexity=0(n)           -> for skewed BST
     Node* insertIntoBSTUtil(Node* root,int value){
         if(root==nullptr){
             root=new Node(value);
@@ -158,12 +184,34 @@ class BinarySearchTree{
 int main(){
     BinarySearchTree *bst=new BinarySearchTree();
     BinarySearchTree::Node *root=bst->getRoot();
+
+    // Construct a BST
     vector<int> elements={3,2,7,4,1,5,8,6,9};
     root=bst->insertIntoBST(root,elements);
+
+    // Traversal
+    cout<<"\nIn-order Traversal : ";
     bst->inOrderTraversal(root);
+    cout<<endl;
+    cout<<"Level Order Traversal : ";
+    bst->levelOrderTraversal(root);
+
+    //Search Target
     int target=8;
-    cout<<endl<<"is "<<target<<" present : "<<bst->searchInBST(root,target)<<endl;
-    bst->deleteNode(root,3);
-    bst->inOrderTraversal(root);
+    cout<<endl<<"is "<<target<<" present : "<<bst->searchInBST(root,target)<<endl<<endl;
+
+    // Delete Node
+    int deleteTarget=3;
+    if(bst->searchInBST(root,deleteTarget)){
+        bst->deleteNode(root,deleteTarget);
+        cout<<deleteTarget<<" deleted"<<endl;
+        bst->inOrderTraversal(root);
+        cout<<endl;
+    }
+
+    //Freeing Memory
+    bst->freeMemory(root);
+    delete bst;
+
     return 0;
 }
