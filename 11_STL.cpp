@@ -7,6 +7,7 @@
 #include <deque>
 #include <set>
 #include <map>
+#include <unordered_map>
 #include <string>
 #include<algorithm>
 using namespace std;
@@ -138,11 +139,15 @@ int main()
     members.clear();
     int membersSetSize=members.size();
     int membersIsEmpty=members.empty();
-
-
-    // 8. Map - map stores elements in "key/value" pairs,
+    
+    
+    // 8. Map - map stores unique elements in "key/value" pairs.
     //          Elements are accessible by keys (not index), and each key is unique.
-    //          Elements are automatically sorted in ascending order by their keys.
+    //          Access key and value in a for-each loop using .first to access key and .second to access value
+
+    // (i).Ordered map - Elements are automatically sorted in ascending order by their keys.
+    //                   Implemented using Self-Balancing BST
+    //                   Time Complexity for Search, Insert, Delete = 0(logn)
     map<string,int> people={{"XYZ",1},{"ABC",2},{"MNO",3}};
     // Accessing Element
     int abcValue=people["ABC"];
@@ -155,12 +160,32 @@ int main()
     people.insert({"FIJ",8});
     //Removing Element
     people.erase("DEF");
-    // Remove all Elements
-    // people.clear();
     //Check if the key exists or not
     bool defExists=people.count("DEF");
-    // Access key and value in a for-each loop
-    // .first to access key and .second to access value
+    // Remove all Elements
+    people.clear();
+
+    // (ii). Un-Ordered map - Elements are randomly arranged(no order).
+    //                        Implemented using Hash Table
+    //                        Time Complexity for search, insert, delete = 0(1) { In worst case it's 0(n) }
+    unordered_map<string,int> people2={{"XYZ",1},{"ABC",2},{"MNO",3}};
+    // Accessing Element
+    int abcValue=people2["ABC"];
+    int mnoValue=people2.at("MNO");
+    // Changing Element Value
+    people2.at("XYZ")=4;
+    //Adding Element
+    // if duplicate key is added, map will update the key's value.
+    people2["ABC"]=5;
+    people2.insert({"FIJ",8});
+    //Removing Element
+    people2.erase("ABC");
+    //Check if the key exists or not
+    bool defExists=people2.count("DEF");
+    //Check if map is empty or not
+    bool isEmpty=people2.empty();
+    // Remove all Elements
+    people2.clear();
 
 
     // Iterators
